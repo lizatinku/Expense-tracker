@@ -31,16 +31,6 @@ function App() {
     setEditingExpense(expense);
   };
 
-  const handleSignIn = async () => {
-    try {
-      await logIn(email, password); 
-      alert("Logged in successfully!");
-    } catch (error) {
-      console.error("Error signing in:", error);
-      alert("Failed to sign in. Please check your credentials.");
-    }
-  };
-
   return (
     <div className="app-container">
       <header className="header-container">

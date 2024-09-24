@@ -1,5 +1,3 @@
-/* src/components/StockData.css */
-
 .stock-data {
   padding: 20px;
   border-radius: 8px;
@@ -66,7 +64,6 @@
   gap: 10px;
 }
 
-/* Style for buttons */
 .stock-buttons button {
   padding: 10px 20px;
   margin-bottom: 10px;
@@ -74,8 +71,8 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  color: #333333; /* Text color */
-  background-color: var(--muted-sage-green); /* Background color */
+  color: #333333;
+  background-color: var(--muted-sage-green); 
 }
 
 /* Individual company button colors */

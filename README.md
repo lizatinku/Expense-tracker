@@ -6,7 +6,6 @@ Features
 - Add, edit, delete, expenses. Sort expenses by date, amount, and price.
 - Manage your finances effortlessly with clear table views and intuitive controls.
 
-
 2. Stock Market API Integration
 - Fetch and display real-time stock data with stylish presentation, helping you keep track of your investments alongside your expenses.
 
