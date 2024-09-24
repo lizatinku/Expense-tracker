@@ -1,0 +1,15 @@
+.export-buttons button {
+    background-color: var(--deep-slate-blue);
+    color: var(--antique-white);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+  }
+  
+  .export-buttons button:hover {
+    background-color: #e07a5e;
+  }
+  
