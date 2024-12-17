@@ -14,7 +14,7 @@ const StockData = () => {
         const response = await axios.get('https://finnhub.io/api/v1/quote', {
           params: {
             symbol: symbol,
-            token: 'cr7rnfpr01qotnb4264gcr7rnfpr01qotnb42650' // Replace with your actual API key
+            token: 'cr7rnfpr01qotnb4264gcr7rnfpr01qotnb42650'
           }
         });
         setStockData(response.data);
