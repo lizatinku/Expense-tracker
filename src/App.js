@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ExpenseForm from './components/ExpenseForm';
 import ExpenseList from './components/ExpenseList';
 import StockData from './components/StockData';
@@ -33,9 +33,16 @@ function App() {
 
   return (
     <div className="app-container">
+      {/* Header Section */}
       <header className="header-container">
         <h1>Expense Tracker</h1>
+        <div className="auth-buttons">
+          <button className="sign-up-button">Sign Up</button>
+          <button className="login-button">Login</button>
+        </div>
       </header>
+      
+      {/* Main Content */}
       <div className="main-content">
         <div className="form-section">
           <div className="spacing-after-form">

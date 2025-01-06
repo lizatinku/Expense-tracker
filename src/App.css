@@ -148,3 +148,42 @@ header h1 {
 .expense-actions button:hover {
   background-color: var(--muted-sage-green);
 }
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px 30px 500px;
+  background-color: var(--deep-slate-blue);
+  color: var(--antique-white); 
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.sign-up-button,
+.login-button {
+  padding: 15px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--terra-cotta);
+  color: var(--antique-white);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sign-up-button:hover,
+.login-button:hover {
+  background-color: var(--muted-sage-green);
+  transform: scale(1.05); 
+}
+
+.sign-up-button:focus,
+.login-button:focus {
+  outline: 2px solid var(--muted-sage-green);
+  outline-offset: 2px;
+}
