@@ -12,5 +12,5 @@ Features
 3. Data Export
 - Export your expense data to PDF and CSV formats for easy sharing and record-keeping.
 
-4. AI-Powered Assistance (Coming Soon)
-Integration with OpenAI's API to provide personalized insights and recommendations, offering a smarter way to manage your finances.
+4. Firebase and Firestore Integration
+- Securely manage user authentication using Firebase and store all expense data in Firestore, ensuring robust security and scalability.
