@@ -12,11 +12,11 @@ function SignUp() {
 
   const toggleSignUpModal = () => {
     setIsSignUpOpen(!isSignUpOpen);
-    setError(""); // Clear error when opening/closing modal
+    setError(""); 
   };
 
   const handleSignUp = async (e) => {
-    e.preventDefault(); // Prevent form submission from reloading the page
+    e.preventDefault(); 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -25,7 +25,7 @@ function SignUp() {
       await setDoc(doc(db, "users", user.uid), { name, email, createdAt: new Date() });
 
       console.log("User registered:", user);
-      toggleSignUpModal(); // Close modal after successful sign-up
+      toggleSignUpModal(); 
     } catch (err) {
       setError(err.message);
     }
@@ -33,12 +33,10 @@ function SignUp() {
 
   return (
     <>
-      {/* Button to open the sign-up modal */}
       <button className="sign-up-button" onClick={toggleSignUpModal}>
         Sign Up
       </button>
 
-      {/* Sign-Up Modal */}
       {isSignUpOpen && (
         <div className="modal-overlay">
           <div className="modal-content">

@@ -4,7 +4,7 @@ import ExpenseList from "./components/ExpenseList";
 import StockData from "./components/StockData";
 import "./App.css";
 import "./components/StockData.css";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import { auth } from "./firebaseConfig";
@@ -14,8 +14,8 @@ function App() {
   const [expenses, setExpenses] = useState([]);
   const [editingExpense, setEditingExpense] = useState(null);
   const [sortCriteria, setSortCriteria] = useState("date");
-  const [user, setUser] = useState(null); // State to track the current user
-  const [isLoginOpen, setIsLoginOpen] = useState(false); // State to control the login modal
+  const [user, setUser] = useState(null); 
+  const [isLoginOpen, setIsLoginOpen] = useState(false); 
 
   const toggleLoginModal = () => {
     setIsLoginOpen(!isLoginOpen);
@@ -23,7 +23,7 @@ function App() {
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth); // Sign out the user
+      await signOut(auth); 
       console.log("User signed out successfully.");
     } catch (error) {
       console.error("Error signing out:", error.message);
@@ -31,12 +31,11 @@ function App() {
   };
 
   useEffect(() => {
-    // Listen to authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); // Update the user state
+      setUser(currentUser); 
     });
 
-    return () => unsubscribe(); // Clean up the listener on unmount
+    return () => unsubscribe(); 
   }, []);
 
   const addExpense = (expense) => {
@@ -69,7 +68,6 @@ function App() {
           <div className="auth-buttons">
             {!user ? (
               <>
-                {/* Show Sign Up and Login buttons when no user is logged in */}
                 <SignUp />
                 <button className="login-button" onClick={toggleLoginModal}>
                   Login
@@ -77,7 +75,6 @@ function App() {
               </>
             ) : (
               <>
-                {/* Show Sign Out button when a user is logged in */}
                 <span>Welcome, {user.email} </span>
                 <button className="sign-out-button" onClick={handleSignOut}>
                   Sign Out
@@ -87,12 +84,9 @@ function App() {
           </div>
         </header>
 
-        {/* Login Modal */}
         {isLoginOpen && <Login onClose={toggleLoginModal} />}
 
-        {/* Routes */}
         <Routes>
-          {/* Main Expense Tracker */}
           <Route
             path="/"
             element={
@@ -123,10 +117,7 @@ function App() {
             }
           />
 
-          {/* Sign Up Page */}
           <Route path="/signup" element={<SignUp />} />
-
-          {/* Login Page */}
           <Route path="/login" element={<div />} />
         </Routes>
       </div>
