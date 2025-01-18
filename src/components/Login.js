@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import { doc, getDoc } from "firebase/firestore"; 
+import { auth, db } from "../firebaseConfig"; 
 
 function Login() {
-  const [isLoginOpen, setIsLoginOpen] = useState(true); // Modal opens immediately on `/login`
+  const [isLoginOpen, setIsLoginOpen] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [userData, setUserData] = useState(null); 
 
   const toggleLoginModal = () => {
     setIsLoginOpen(!isLoginOpen);
@@ -14,11 +16,22 @@ function Login() {
   };
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent form submission from reloading the page
+    e.preventDefault(); 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log("User logged in:", userCredential.user);
-      toggleLoginModal(); // Close modal after successful login
+      const user = userCredential.user;
+
+      console.log("User logged in:", user);
+
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists()) {
+        setUserData(userDoc.data()); 
+        console.log("User data from Firestore:", userDoc.data());
+      } else {
+        console.log("No user data found in Firestore.");
+      }
+
+      toggleLoginModal(); 
     } catch (err) {
       setError(err.message); 
     }
@@ -26,7 +39,6 @@ function Login() {
 
   return (
     <>
-      {/* Login Modal */}
       {isLoginOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -61,6 +73,13 @@ function Login() {
               Close
             </button>
           </div>
+        </div>
+      )}
+
+      {userData && (
+        <div>
+          <h3>Welcome, {userData.name}</h3>
+          <p>Email: {userData.email}</p>
         </div>
       )}
     </>

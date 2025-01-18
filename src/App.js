@@ -4,7 +4,7 @@ import ExpenseList from "./components/ExpenseList";
 import StockData from "./components/StockData";
 import "./App.css";
 import "./components/StockData.css";
-import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import { auth } from "./firebaseConfig";
@@ -16,9 +16,16 @@ function App() {
   const [sortCriteria, setSortCriteria] = useState("date");
   const [user, setUser] = useState(null); 
   const [isLoginOpen, setIsLoginOpen] = useState(false); 
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false); 
 
   const toggleLoginModal = () => {
     setIsLoginOpen(!isLoginOpen);
+    setIsSignUpOpen(false); 
+  };
+
+  const toggleSignUpModal = () => {
+    setIsSignUpOpen(!isSignUpOpen);
+    setIsLoginOpen(false); 
   };
 
   const handleSignOut = async () => {
@@ -32,7 +39,7 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); 
+      setUser(currentUser);
     });
 
     return () => unsubscribe(); 
@@ -62,20 +69,21 @@ function App() {
   return (
     <Router>
       <div className="app-container">
-        {/* Header Section */}
         <header className="header-container">
           <h1>Expense Tracker</h1>
           <div className="auth-buttons">
             {!user ? (
               <>
-                <SignUp />
+                <button className="sign-up-button" onClick={toggleSignUpModal}>
+                  Sign Up
+                </button>
                 <button className="login-button" onClick={toggleLoginModal}>
                   Login
                 </button>
               </>
             ) : (
               <>
-                <span>Welcome, {user.email} </span>
+                <span>Welcome, {user.email}</span>
                 <button className="sign-out-button" onClick={handleSignOut}>
                   Sign Out
                 </button>
@@ -85,6 +93,7 @@ function App() {
         </header>
 
         {isLoginOpen && <Login onClose={toggleLoginModal} />}
+        {isSignUpOpen && <SignUp onClose={toggleSignUpModal} />}
 
         <Routes>
           <Route
@@ -116,9 +125,6 @@ function App() {
               </div>
             }
           />
-
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<div />} />
         </Routes>
       </div>
     </Router>
